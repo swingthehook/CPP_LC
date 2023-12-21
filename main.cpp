@@ -23,7 +23,9 @@ int bh(int n){
 int main() {
 
     int n;
-    cin>>n;7
+    cin>>n;
+    cout<<n;
+    return 0;
 
 
 
