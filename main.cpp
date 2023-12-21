@@ -25,6 +25,7 @@ int main() {
     int n;
     cin>>n;
     cout<<n;
+    //撒个娇哈喽健康是福亮机卡说法
     return 0;
 
 
