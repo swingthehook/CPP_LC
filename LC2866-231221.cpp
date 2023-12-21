@@ -9,10 +9,12 @@ public:
         stack<int> pre,suf;
         long long presum[len],sufsum[len];
         for (int i = 0; i < len; ++i) {
+            //栈存下标，保证前缀单调
             while(!pre.empty() && maxHeights[i]<maxHeights[pre.top()]){
                 pre.pop();
             }
             if (pre.empty()){
+                //两个int相乘，强转
                 presum[i] = (long long )(i+1)*maxHeights[i];
             } else{
                 presum[i] = presum[pre.top()] + (long long )(i-pre.top())*maxHeights[i];
@@ -46,7 +48,6 @@ int main() {
     vector<int> maxHeight = {3,5,3,5,1,5,4,4,4};
     auto sol = new Solution();
     cout<<sol->maximumSumOfHeights(maxHeight);
-
 
 
 
