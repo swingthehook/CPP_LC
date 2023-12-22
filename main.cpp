@@ -45,7 +45,7 @@ int main() {
 
     vector<int> maxHeight = {3,5,3,5,1,5,4,4,4};
     auto sol = new Solution();
-    cout<<sol->maximumSumOfHeights(maxHeight);
+    cout<<sol->maximumSumOfHeights(maxHeight)<<endl;
 
 
 
