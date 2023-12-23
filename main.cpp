@@ -4,40 +4,35 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> dailyTemperatures(vector<int>& temperatures) {
-        int len = temperatures.size();
-        stack<int> st[len];
-        vector<int> ans(len);
+    int minStoneSum(vector<int>& piles, int k) {
+        int len =piles.size();
+        priority_queue<int> pq;
         for (int i = 0; i < len; i++)
         {
-            while (!st->empty()&&temperatures[i]>temperatures[st->top()]){
-                ans[st->top()] = i-st->top();
-                st->pop();
-            }
-            st->push(i);
-            
+            pq.push(piles[i]);
         }
-        while (!st->empty())
+        int temp;
+        for (int i = 0; i < k; i++)
         {
-            ans[st->top()]=0;
-            st->pop();
+            temp = pq.top();
+            temp = temp - temp/2;
+            pq.pop();
+            pq.push(temp);
         }
+        temp =0;
+        while (!pq.empty())
+        {
+            temp += pq.top();
+            pq.pop();
+        }
+        return temp;
         
-        return ans;
+
     }
 };
+
 int main() {
 
-    vector<int> maxHeight = {73,74,75,71,69,72,76,73};
-    auto sol = new Solution();
-    auto ans = sol->dailyTemperatures(maxHeight);
-    for (int i = 0; i < ans.size(); i++)
-    {
-        cout<<ans[i]<<' ';
-    }
     
-
-
-
-
+    return 0;
 }
