@@ -42,7 +42,7 @@ int main() {
 
     vector<int> p = {1,0,3};
     auto ans = Solution().minOperationsMaxProfit(p, 61, 55);
-
+    cout<<ans;
 
     return 0;
 }
