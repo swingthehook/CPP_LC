@@ -2,7 +2,6 @@
 /cmake-build-debug/
 *.exe
 */
-*
-!*.cpp
 /.vscode/
 CMakeLists.txt
+main.cpp
