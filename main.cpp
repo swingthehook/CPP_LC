@@ -15,66 +15,39 @@ struct ListNode {
 
 class Solution {
 public:
-    vector<vector<int>> generateMatrix(int n) {
-        vector<vector<int>> ans(n,vector<int>(n));
-        int i=0,j=0;
-        int count = 1;
-        int direction = 1;
-        int circle=0;
-        while (circle<n/2){
-            ans[i][j]=count;
-            ++count;
-            if(direction == 1){
-                if(j<(n-circle-1)){
-                    j++;
-                }
-                else{
-                    i++;
-                    direction=2;
-                }
-            } else if(direction == 2){
-                if(i<n-circle-1){
-                    i++;
-                } else{
-                    j--;
-                    direction=3;
-                }
-            }else if(direction==3) {
-                if (j > (circle)) {
-                    j--;
-                } else {
-                    i--;
-                    direction = 4;
-                    if(i< circle+1)
-                        break;
-                }
-            }
-            else{
-                if(i>circle+1){
-                    i--;
-                } else{
-                    j++;
-                    circle++;
-                    direction=1;
-                }
+    int maximumSwap(int num) {
+        priority_queue<int> pq;
+        vector<int> nr;
+        int temp = num;
+        while (temp != 0) {
+            int t = temp % 10;
+            pq.push(t);
+            nr.push_back(t);
+            temp /= 10;
+        }
+        int i = nr.size() - 1;
+        while (i >= 0 && nr[i] == pq.top()) {
+            i--;
+            pq.pop();
+        }
+        for (int j = 0; j < i; ++j) {
+            if (nr[j] == pq.top()) {
+                swap(nr[j], nr[i]);
+                break;
             }
         }
-        if(n%2){
-            ans[n/2][n/2]=n*n;
+        int ans = 0;
+        for (int j = nr.size() - 1; j >= 0; --j) {
+            ans *= 10;
+            ans += nr[j];
         }
         return ans;
     }
 };
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
-    int num=2;
-    auto ans = Solution().generateMatrix(num);
-    for (int i = 0; i < num; ++i) {
-        for (int j = 0; j < num; ++j) {
-            cout<<ans[i][j]<<" ";
-        }
-        cout<<endl;
-    }
+    int num = 2;
+    auto ans = Solution().maximumSwap(2736);
+    cout << ans;
     return 0;
 }
