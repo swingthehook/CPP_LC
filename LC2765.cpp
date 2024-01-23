@@ -15,25 +15,20 @@ struct ListNode {
 
 class Solution {
 public:
-    int alternatingSubarray(vector<int> &nums) {
-        int count = -1;
-        int ans = -1;
-        int flag;
-        for (int i = 1; i < nums.size();) {
-            if (nums[i] == nums[i - 1] + 1) {
-                flag = 1;
-                count = 1;
-                while (i<nums.size() && nums[i] - nums[i-1] == flag){
-                    i++;
-                    flag = - flag;
-                    count++;
-                }
-                ans = max(ans , count);
-            }else{
-                ++i;
-            }
+    ListNode *removeElements(ListNode *head, int val) {
+        while (head && head->val == val) {
+            head = head->next;
         }
-        return ans;
+        if(!head)
+            return head;
+        ListNode* p=head;
+        while (p->next){
+            if(p->next->val == val)
+                p->next = p->next->next;
+            else
+                p=p->next;
+        }
+        return head;
     }
 };
 
