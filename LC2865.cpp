@@ -15,11 +15,9 @@ struct ListNode {
 
 class Solution {
 public:
-    /*
-     * 两遍单调栈，从前到后一遍，找升序和，从后往前一遍，找降序和
+    /*两遍单调栈，从前到后一遍，找升序和，从后往前一遍，找降序和
      * 结合两个遍历序列，找到最大的山峰和
-     * 过程中用单调栈寻找前缀和和后缀和
-     */
+     * 过程中用单调栈寻找前缀和和后缀和         */
     long long maximumSumOfHeights(vector<int> &maxHeights) {
         int len = maxHeights.size();
         vector<long long> presum(len), sufsum(len);
