@@ -4,4 +4,4 @@
 */
 /.vscode/
 CMakeLists.txt
-main.cpp
+LC.cpp
