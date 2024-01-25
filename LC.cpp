@@ -18,7 +18,6 @@ struct ListNode {
 int main() {
     int num = 2;
     vector<int> nums = {2, 3, 4, 3, 4};
-    auto ans = Solution().alternatingSubarray(nums);
-    cout << ans;
+    cout << "sfgddxb"<<endl;
     return 0;
 }
