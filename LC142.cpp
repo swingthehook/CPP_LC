@@ -12,7 +12,14 @@ struct ListNode {
 
     ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
-
+/*
+    起点到入口距离为x，入口到快慢相遇为y，相遇点绕回入口为z
+    fast = x+y+n(y+z)
+    slow = x+y           ->   n(y+z) = x+y  ->  x = (n-1)y+nz=(n-1)(y+z)+z
+    fast = 2*slow
+    此时，从起点向入口出发，距离为x，从相遇点向入口出发，距离为z，两个指针同步前进
+    从相遇点出发的指针可能会绕圈[(n-1)圈]
+*/
 class Solution {
 public:
     ListNode *detectCycle(ListNode *head) {
