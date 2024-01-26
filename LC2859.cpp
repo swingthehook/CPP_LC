@@ -18,6 +18,7 @@ public:
     int sumIndicesWithKSetBits(vector<int> &nums, int k) {
         int ans = 0, len = nums.size();
         for (int i = 0; i < len; ++i) {
+
             if (__builtin_popcount(i) == k)
                 ans += nums[i];
         }
