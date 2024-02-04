@@ -15,6 +15,7 @@ struct ListNode {
 
 class Solution {
 public:
+    //排序+双指针
     vector<vector<int>> threeSum(vector<int>& nums) {
         vector<vector<int>> ans;
         sort(nums.begin(),nums.end());
