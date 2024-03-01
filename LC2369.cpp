@@ -35,7 +35,10 @@ public:
     bool valid3(int a, int b, int c) {
         return a == b && b == c || a == b - 1 && c == b + 1;
     }
-
+    /*问题分解：长为n的数组合法 ->
+     * 长为n-2的数组合法&&最后两个合法 ||
+     * 长为n-3的数组合法&&最后三个合法
+     */
     bool validPartition(vector<int> &nums) {
         vector<bool> dp(nums.size() + 1, false);
         dp[0] = true;
