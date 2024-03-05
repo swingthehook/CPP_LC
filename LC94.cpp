@@ -32,8 +32,8 @@ public:
     void in(TreeNode* root){
         if(root){
             in(root->left);
-            in(root->right);
             ans.push_back(root->val);
+            in(root->right);
         }
     }
     vector<int> inorderTraversal(TreeNode* root) {

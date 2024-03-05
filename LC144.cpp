@@ -26,7 +26,21 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-
+class Solution {
+public:
+    vector<int> ans;
+    void pre(TreeNode* root){
+        if(root){
+            ans.push_back(root->val);
+            pre(root->left);
+            pre(root->right);
+        }
+    }
+    vector<int> preorderTraversal(TreeNode* root) {
+        pre(root);
+        return ans;
+    }
+};
 
 int main() {
     int num = 2;

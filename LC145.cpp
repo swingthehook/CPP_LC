@@ -29,15 +29,15 @@ struct TreeNode {
 class Solution {
 public:
     vector<int> ans;
-    void in(TreeNode* root){
+    void post(TreeNode* root){
         if(root){
-            in(root->left);
-            in(root->right);
+            post(root->left);
+            post(root->right);
             ans.push_back(root->val);
         }
     }
     vector<int> postorderTraversal(TreeNode* root) {
-        in(root);
+        post(root);
         return ans;
     }
 };
