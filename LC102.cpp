@@ -34,11 +34,15 @@ public:
             return ans;
         queue<pair<TreeNode *, int>> q;
         q.push(make_pair(root, 0));
+        ans.push_back(vector<int>());
+        int cur=0;
         while (!q.empty()) {
             auto tmp = q.front();
             q.pop();
-            if (ans.size() < tmp.second+1)
-                ans.resize(tmp.second);
+            if (cur < tmp.second){
+                ans.push_back(vector<int>());
+                cur++;
+            }
             ans[tmp.second].push_back(tmp.first->val);
             if (tmp.first->left)
                 q.push(make_pair(tmp.first->left, tmp.second + 1));
