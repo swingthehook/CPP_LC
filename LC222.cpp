@@ -45,21 +45,22 @@ public:
 
 class Solution {
 public:
-    bool check(TreeNode *r1,TreeNode *r2){
-        if(!r1 && !r2)
-            return true;
-        else if(!r1 || !r2)
-            return false;
-        else{
-            return r1->val == r2->val && check(r1->left,r2->right) && check(r1->right,r2->left);
-        }
+    int cnt=0;
+    int countNodes(TreeNode* root) {
+        dfs(root);
+        return cnt;
     }
-    bool isSymmetric(TreeNode* root) {
-        return check(root,root);
+    void dfs(TreeNode * root){
+        if(!root)
+            return;
+        cnt++;
+        if(root->left)
+            dfs(root->left);
+        if(root->right)
+            dfs(root->right);
+
     }
 };
-
-
 
 int main() {
     int num = 2;
