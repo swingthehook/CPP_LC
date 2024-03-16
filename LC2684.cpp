@@ -46,6 +46,7 @@ public:
 class Solution {
 public:
     //用bfs而不是dfs，用两个哈希表，而不是队列
+    //只需要检查上一层，两个hash table交替存储再swap即可
     int maxMoves(vector<vector<int>> &grid) {
         int m = grid.size(), n = grid[0].size();
         unordered_set<int> h1, h2;//存的是可以走的块
