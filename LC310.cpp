@@ -76,6 +76,22 @@ public:
             max = tmp.second;
             last = tmp.first;
         }
+        start = last;
+        q.push(make_pair(start,0));
+        visit.clear();parent.clear();
+        visit.resize(n);parent.resize(n);
+        while (!q.empty()) {
+            auto tmp = q.front();
+            visit[tmp.first] = true;
+            q.pop();
+            for (auto i: n_tb[tmp.first])
+                if (!visit[i]){
+                    q.push(make_pair(i, tmp.second + 1));
+                    parent[i] = tmp.first;
+                }
+            max = tmp.second;
+            last = tmp.first;
+        }
         vector<int> path;
         parent[start] = -1;
         while (last!= -1){
