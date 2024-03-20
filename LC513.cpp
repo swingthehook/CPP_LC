@@ -43,7 +43,28 @@ public:
     }
 };
 
-
+class Solution {
+public:
+    int findBottomLeftValue(TreeNode* root) {
+        int cur=-1;
+        int ans=0;
+        queue<pair<TreeNode *,int>> q;
+        q.push(make_pair(root,0));
+        while (!q.empty()){
+            auto tmp = q.front();
+            q.pop();
+            if(tmp.first->left)
+                q.push(make_pair(tmp.first->left,tmp.second+1));
+            if(tmp.first->right)
+                q.push(make_pair(tmp.first->right,tmp.second+1));
+            if(cur < tmp.second){
+                cur = tmp.second;
+                ans = tmp.first->val;
+            }
+        }
+        return ans;
+    }
+};
 
 int main() {
     int num = 2;

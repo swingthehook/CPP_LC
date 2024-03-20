@@ -43,7 +43,24 @@ public:
     }
 };
 
-
+class Solution {
+public:
+    int sum=0;
+    int sumOfLeftLeaves(TreeNode* root) {
+        if(root)
+            dfs(root);
+        return sum;
+    }
+    void dfs(TreeNode *root){
+        if(root->left ){
+            if(!root->left->left && !root->left->right)
+                sum+=root->left->val;
+            dfs(root->left);
+        }
+        if(root->right)
+            dfs(root->right);
+    }
+};
 
 int main() {
     int num = 2;

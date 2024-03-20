@@ -43,7 +43,24 @@ public:
     }
 };
 
-
+class Solution {
+public:
+    bool flag= false;
+    bool hasPathSum(TreeNode* root, int targetSum) {
+        if(root)
+            dfs(root,targetSum,0);
+        return flag;
+    }
+    void dfs(TreeNode * root,int target,int sum){
+        sum+=root->val;
+        if(!root->left && !root->right && sum == target)
+            flag=true;
+        if(!flag&&root->left)
+            dfs(root->left,target,sum);
+        if(!flag&&root->right)
+            dfs(root->right,target,sum);
+    }
+};
 
 int main() {
     int num = 2;
