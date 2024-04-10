@@ -29,7 +29,7 @@ struct TreeNode {
 class Node {
 public:
     int val;
-    vector<Node *> children;
+    vector<Node*> children;
 
     Node() {}
 
@@ -37,7 +37,7 @@ public:
         val = _val;
     }
 
-    Node(int _val, vector<Node *> _children) {
+    Node(int _val, vector<Node*> _children) {
         val = _val;
         children = _children;
     }
@@ -45,21 +45,30 @@ public:
 
 class Solution {
 public:
-    TreeNode *trimBST(TreeNode *root, int low, int high) {
-        if (!root)
-            return root;
-        if(root->val < low) return trimBST(root->right,low,high);
-        if(root->val > high) return trimBST(root->left,low,high);
-        root->left = trimBST(root->left,low,high);
-        root->right = trimBST(root->right,low,high);
-        return root;
+    int maxProfit(vector<int>& prices) {
+        int ans=0;
+        stack<int> stk;
+        int minn=0;
+        for(auto ele:prices){
+            if(stk.empty()){
+                stk.push(ele);
+                minn = ele;
+            }
+            else{
+                while (ele<=stk.top())
+                    stk.pop();
+                if(stk.empty()) minn=ele;
+                stk.push(ele);
+            }
+            ans = max(ans,stk.top()-minn);
+        }
+        return ans;
     }
 };
 
 int main() {
     int num = 2;
-    vector<int> nums = {7, 12, 9, 8, 9, 15};
-    TreeNode *root = new TreeNode(1, new TreeNode(0), new TreeNode(2));
-    Solution().trimBST(root, 1, 2);
+    vector<int> nums = {7,12,9,8,9,15};
+    Solution();
     return 0;
 }
