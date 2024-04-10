@@ -42,29 +42,19 @@ public:
         children = _children;
     }
 };
+
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
         int ans=0;
-        stack<int> stk;
-        int minn=0;
-        for(auto ele:prices){
-            if(stk.empty()){
-                stk.push(ele);
-                minn = ele;
-            }
-            else{
-                while (ele<=stk.top())
-                    stk.pop();
-                if(stk.empty()) minn=ele;
-                stk.push(ele);
-            }
-            ans = max(ans,stk.top()-minn);
+        for (int i = 1; i < prices.size(); ++i) {
+            int tmp = prices[i]-prices[i-1];
+            if(tmp>0)
+                ans+=tmp;
         }
         return ans;
     }
 };
-
 
 int main() {
     int num = 2;
