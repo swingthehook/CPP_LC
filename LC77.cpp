@@ -47,7 +47,6 @@ class Solution {
 public:
     vector<int> tmp;
     vector<vector<int>> ans;
-
     void rec(int start, int max, int index, int target_cnt) {
         if (index == target_cnt){
             ans.push_back(tmp);
