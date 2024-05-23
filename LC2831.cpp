@@ -48,7 +48,7 @@ public:
     int longestEqualSubarray(vector<int> &nums, int k) {
         int max_cnt = 0;
         int i = 0, j = 0;
-        map<int, int> mp;
+        vector<int> mp(nums.size()+1);
         while (j < nums.size()) {
             while (j < nums.size() && j - i <= max_cnt + k) {
                 mp[nums[j]]++;
