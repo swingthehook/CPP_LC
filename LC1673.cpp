@@ -42,40 +42,20 @@ public:
         children = _children;
     }
 };
-
 class Solution {
 public:
     vector<int> mostCompetitive(vector<int> &nums, int k) {
         vector<int> ans;
         int len = nums.size();
         for (int i = 0; i < nums.size(); ++i) {
-            bool f1, f2, f3;
-            f1 = !ans.empty();
-            if (f1) {
-                int t1 = len - i + ans.size();
-                k - ans.size();
-                int t2 = k - ans.size();
-                f2 = t1 > t2;
-                if (f2)
-                    f3 = nums[i] < ans.back();
-            }
-
-            while (f1 && f2 && f3) {
+            while (!ans.empty() && (len - i  )> k - (int)ans.size() && nums[i] < ans.back())
                 ans.pop_back();
-                f1 = !ans.empty();
-                if (f1) {
-                    int t1 = len - i + ans.size();
-                    int t2 = k;
-                    f2 = t1 > t2;
-                    if (f2)
-                        f3 = nums[i] < ans.back();
-                }
-            }
             ans.push_back(nums[i]);
         }
         ans.resize(k);
         return ans;
     }
+
 };
 
 int main() {
