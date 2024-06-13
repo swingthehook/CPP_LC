@@ -45,39 +45,47 @@ public:
 
 class Solution {
 public:
-    int ans = 0;
+    int maxOperations(vector<int>& nums) {
+        int n = nums.size();
+        int memo[n][n];
 
-    void dfs(vector<int> &nums, int begin, int end, int target, int cnt) {
-        if (begin + 1 <= end && nums[begin] + nums[begin + 1] == target) {
-            dfs(nums, begin + 2, end, target, cnt + 1);
-        }
-        if (begin < end && nums[begin] + nums[end] == target) {
-            dfs(nums, begin + 1, end - 1, target, cnt + 1);
-        }
-        if (end - 1 >= begin && nums[end - 1] + nums[end] == target) {
-            dfs(nums, begin, end - 2, target, cnt + 1);
-        }
-        ans = max(ans, cnt);
+        auto helper = [&](int i, int j, int target) -> int {
+            memset(memo, -1, sizeof(memo));
+            function<int(int, int)> dfs = [&](int i, int j) -> int {
+                if (i >= j) {
+                    return 0;
+                }
+                if (memo[i][j] != -1) {
+                    return memo[i][j];
+                }
+                int ans = 0;
+                if (nums[i] + nums[i + 1] == target) {
+                    ans = max(ans, 1 + dfs(i + 2, j));
+                }
+                if (nums[j - 1] + nums[j] == target) {
+                    ans = max(ans, 1 + dfs(i, j - 2));
+                }
+                if (nums[i] + nums[j] == target) {
+                    ans = max(ans, 1 + dfs(i + 1, j - 1));
+                }
+                memo[i][j] = ans;
+                return ans;
+            };
+            return dfs(i, j);
+        };
 
-
-    }
-
-    int maxOperations(vector<int> &nums) {
-        int len = nums.size();
-        set<int> list;
-        list.emplace(nums[0] + nums[1]);
-        list.emplace(nums[len - 1] + nums[len - 2]);
-        list.emplace(nums[0] + nums[len - 1]);
-        for (auto &each: list) {
-            dfs(nums, 0, len - 1, each, 0);
-        }
-        return ans;
+        int res = 0;
+        res = max(res, helper(0, n - 1, nums[0] + nums[n - 1]));
+        res = max(res, helper(0, n - 1, nums[0] + nums[1]));
+        res = max(res, helper(0, n - 1, nums[n - 2] + nums[n - 1]));
+        return res;
     }
 };
 
+
 int main() {
     int num = 2;
-    vector<int> nums = {1, 1, 2, 3, 2, 2, 1, 3, 3};
+    vector<int> nums = {3,2,6,1,4};
     Solution().maxOperations(nums);
     return 0;
 }
