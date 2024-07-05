@@ -73,11 +73,9 @@ public:
                     ones++;
                 }
             }
-            for (int i = m ; i >= 0; --i) {
-                for (int j = n ; j >= 0; --j) {
-                    if (i >= zeros && j >= ones) {
+            for (int i = m ; i >= zeros; --i) {
+                for (int j = n ; j >= ones; --j) {
                         dp[i][j] = max(dp[i][j], dp[i - zeros][j - ones] + 1);
-                    }
                 }
             }
         }
